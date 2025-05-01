@@ -6,6 +6,6 @@ const userSchema = {
     role: { type: String, enum: ['student', 'teacher', 'admin'], required: true },
 };
 
-const userModel = mongoose.model("students", userSchema);
+const userModel = mongoose.model("users", userSchema);
 
 export default userModel;
