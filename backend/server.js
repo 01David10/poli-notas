@@ -1,6 +1,6 @@
 import express from "express";
 import DatabaseConnection from "./db.js";
-// import routes from "./backend/routes.js";
+import userRoutes from "../backend/routes/user.js";
 
 const app = express();
 
@@ -12,5 +12,6 @@ DatabaseConnection()
 
 // middlewares
 app.use(express.json());
-// app.use("/", routes);
 
+// routes
+app.use('/users', userRoutes);
