@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
-import CONNECTION_STRING from './config.js';
+import dotenv from 'dotenv';
 
-const uri = CONNECTION_STRING
+dotenv.config(); // carga las variables del archivo .env
+
+const uri = process.env.CONNECTION_STRING
 
 async function DatabaseConnection() {
     try {
@@ -12,10 +14,8 @@ async function DatabaseConnection() {
     }
     // finally {
     //     await mongoose.disconnect();
-    //     console.log("database connected");
+    //     console.log("database disconnected");
     // }
 }
-
-DatabaseConnection()
 
 export default DatabaseConnection;
