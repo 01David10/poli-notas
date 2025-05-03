@@ -11,7 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
     try {
-        const user = await userModel.findById(req.params.id);
+        const user = await userModel.findById(req.params.dni);
         if (!user) {
             return res.status(404).json({ message: "user not found" });
         }
@@ -32,12 +32,24 @@ const createUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-
+    try {
+        const user = await userModel.findOneAndUpdate(
+            { dni: req.params.dni },
+            req.body,
+            { new: true, runValidators: true }
+        );
+        if (!user) {
+            return res.status(404).json({ message: "user not found" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 }
 
 const deleteUser = async (req, res) => {
     try {
-        const user = await userModel.findByIdAndDelete(req.params.id);
+        const user = await userModel.deleteOne({ dni: req.params.dni });
         if (!user) {
             return res.status(404).json({ message: "user not found" });
         }

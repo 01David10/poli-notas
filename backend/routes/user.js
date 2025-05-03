@@ -5,9 +5,9 @@ import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from "..
 const router = Router();
 
 router.get("/getAllUsers", getAllUsers);
-router.get("/getUserById/:id", getUserById);
+router.get("/getUserById/:dni", getUserById);
 router.post("/createUser", createUser);
-router.put("/updateUser/:id", updateUser);
-router.delete("/deleteUser/:id", deleteUser);
+router.put("/updateUser/:dni", updateUser);
+router.delete("/deleteUser/:dni", deleteUser);
 
 export default router;
