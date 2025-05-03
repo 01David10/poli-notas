@@ -12,10 +12,6 @@ async function DatabaseConnection() {
     } catch (error) {
         console.log("database connection error", error);
     }
-    // finally {
-    //     await mongoose.disconnect();
-    //     console.log("database disconnected");
-    // }
 }
 
 export default DatabaseConnection;
