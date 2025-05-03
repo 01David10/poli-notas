@@ -9,9 +9,9 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-const getUserById = async (req, res) => {
+const getUserByDni = async (req, res) => {
     try {
-        const user = await userModel.findById(req.params.dni);
+        const user = await userModel.findOne ({ dni: req.params.dni });
         if (!user) {
             return res.status(404).json({ message: "user not found" });
         }
@@ -59,4 +59,4 @@ const deleteUser = async (req, res) => {
     }
 }
 
-export { getAllUsers, getUserById, createUser, updateUser, deleteUser };
+export { getAllUsers, getUserByDni, createUser, updateUser, deleteUser };
