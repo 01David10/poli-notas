@@ -1,5 +1,4 @@
 import userModel from "../schema.js";
-import mongoose from 'mongoose';
 
 const getAllUsers = async (req, res) => {
     try {
@@ -8,10 +7,6 @@ const getAllUsers = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-    // finally {
-    //     await mongoose.disconnect();
-    //     console.log("database disconnected");
-    // }
 }
 
 const getUserByDni = async (req, res) => {
@@ -24,10 +19,6 @@ const getUserByDni = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-        // finally {
-    //     await mongoose.disconnect();
-    //     console.log("database disconnected");
-    // }
 }
 
 const createUser = async (req, res) => {
@@ -38,10 +29,6 @@ const createUser = async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-        // finally {
-    //     await mongoose.disconnect();
-    //     console.log("database disconnected");
-    // }
 }
 
 const updateUser = async (req, res) => {
@@ -58,10 +45,6 @@ const updateUser = async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-        // finally {
-    //     await mongoose.disconnect();
-    //     console.log("database disconnected");
-    // }
 }
 
 const deleteUser = async (req, res) => {
@@ -74,10 +57,6 @@ const deleteUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-        // finally {
-    //     await mongoose.disconnect();
-    //     console.log("database disconnected");
-    // }
 }
 
 export { getAllUsers, getUserByDni, createUser, updateUser, deleteUser };
