@@ -2,6 +2,22 @@ import jwt from 'jsonwebtoken'
 
 const tokenSecret = process.env.TOKEN_SECRET
 
+function createAccessToken (payload) {
+  return new Promise((resolve, reject) => {
+    jwt.sign(
+      payload,
+      tokenSecret,
+      {
+        expiresIn: '1d'
+      },
+      (err, token) => {
+        if (err) reject(err)
+        resolve(token)
+      }
+    )
+  })
+}
+
 const authRequired = (req, res, next) => {
   console.log('Cookies recibidas:', req.cookies)
   const token = req.cookies.token
@@ -23,4 +39,4 @@ const authRequired = (req, res, next) => {
   })
 }
 
-export default authRequired
+export { createAccessToken, authRequired }

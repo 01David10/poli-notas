@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { getAllUsers, getUserByDni, createUser, updateUser, deleteUser } from '../controllers/user.js'
-import authRequired from '../jwt.js'
+import { authRequired } from '../jwt.js'
 
 const router = Router()
 

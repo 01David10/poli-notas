@@ -1,6 +1,7 @@
 import express from 'express'
 import DatabaseConnection from './db.js'
 import userRoutes from '../backend/routes/user.js'
+import sessionRoutes from './routes/session.js'
 
 // start server
 const app = express()
@@ -18,3 +19,4 @@ app.use(express.json())
 
 // routes
 app.use('/users', userRoutes)
+app.use('/session', sessionRoutes)
