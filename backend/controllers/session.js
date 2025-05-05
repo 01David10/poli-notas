@@ -4,41 +4,35 @@ import { createAccessToken } from '../jwt.js'
 
 const login = async (req, res) => {
   // verificar que no haya sesion iniciada
-  if (req.cookies.token) {
-    return res
-      .status(400)
-      .json({ message: 'Ya hay una sesión activa. Cierra sesión primero.' })
-  }
+  // if (req.cookies.token) {
+  //   return res
+  //     .status(400)
+  //     .json({ message: 'Active session. Please close it before strating another' })
+  // }
 
   const { email, password } = req.body
 
   try {
-    //  buscar usuario
+    //  validar correo
     const userFound = await User.findOne({ email })
     if (!userFound) {
-      return res.status(400).json({ message: 'Usuario no Encontrado' })
+      return res.status(400).json({ message: 'Email not found' })
     }
 
     // validar contraseña
     const isMatch = await bcrypt.compare(password, userFound.password)
     if (!isMatch) {
-      return res.status(400).json({ message: 'Contraseña incorrecta' })
+      return res.status(400).json({ message: 'Incorrect password' })
+    } else {
+      // creacion del token
+      const token = await createAccessToken({ userFound })
+      // guardar token en la cookie
+      res.cookie('token', token, {
+        httpOnly: true
+      })
+
+      res.send('Login successful')
     }
-
-    // creacion del token (se guarda en la cookie)
-    const token = await createAccessToken({ id: userFound.id })
-    res.cookie('token', token, {
-      httpOnly: true
-    })
-
-    console.log('usuario:', userFound)
-
-    res.json({
-      dni: userFound.dni,
-      name: userFound.name,
-      email: userFound.email,
-      role: userFound.role
-    })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -65,6 +59,7 @@ const register = async (req, res) => {
 
     // creacion del Token
     const token = await createAccessToken({ id: userSaved.id })
+    // guardar el token en la cookie
     res.cookie('token', token, {
       httpOnly: true
     })
@@ -83,7 +78,7 @@ const register = async (req, res) => {
 const logout = async (req, res) => {
   res.clearCookie('token')
 
-  res.status(200).json({ message: 'Sesión cerrada' }) // luego elimino esto
+  res.status(200).json({ message: 'Session closed successful' }) // luego elimino esto
 
   // return res.redirect('/src/HTML/login.html')
 }

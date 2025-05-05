@@ -1,4 +1,5 @@
 import UserModel from '../schema.js'
+import bcrypt from 'bcrypt'
 
 const getAllUsers = async (req, res) => {
   try {
@@ -24,6 +25,7 @@ const getUserByDni = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const user = new UserModel(req.body)
+    user.password = await bcrypt.hash(user.password, 10)
     await user.save()
     res.status(201).json(user)
   } catch (error) {
@@ -33,15 +35,22 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    const updateUser = req.body
+
+    updateUser.password = await bcrypt.hash(updateUser.password, 10)
+
     const user = await UserModel.findOneAndUpdate(
       { dni: req.params.dni },
-      req.body,
+      updateUser,
       { new: true, runValidators: true }
     )
+
+    // validar usuario
     if (!user) {
       return res.status(404).json({ message: 'user not found' })
+    } else {
+      res.status(200).json(user)
     }
-    res.status(200).json(user)
   } catch (error) {
     res.status(400).json({ message: error.message })
   }
