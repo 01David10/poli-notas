@@ -24,7 +24,7 @@ async function login () {
 
     if (response.ok) {
       alert('¡Welcome, ' + data.name + '!') // cambiar por alerta de sweetalert
-      //   window.location.href = '/src/HTML/principal.html'
+      window.location.href = '/index'
     } else {
       alert('Unsuccessful login') // cambiar por alerta de sweetalert
     }
