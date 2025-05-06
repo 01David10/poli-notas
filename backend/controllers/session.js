@@ -31,7 +31,7 @@ const login = async (req, res) => {
         httpOnly: true
       })
 
-      res.send('Login successful')
+      res.json(userFound)
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
