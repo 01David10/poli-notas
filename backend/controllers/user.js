@@ -37,7 +37,9 @@ const updateUser = async (req, res) => {
   try {
     const updateUser = req.body
 
-    updateUser.password = await bcrypt.hash(updateUser.password, 10)
+    if (updateUser.password) {
+      updateUser.password = await bcrypt.hash(updateUser.password, 10)
+    }
 
     const user = await UserModel.findOneAndUpdate(
       { dni: req.params.dni },
