@@ -44,27 +44,83 @@ body {
     text-decoration: underline;
   }
 
-  .main {
-    width: 90%;              
-    max-width: 1400px;      
-    margin: 0 auto;        
-    padding: 20px;          
-    box-sizing: border-box;  
-  }
-  
-  
-  /* Main content */
-  .main {
-    flex: 1;
-    display: flex;
-  }
-  
-  .column {
-    flex: 1;
-    padding: 1rem;
+   /* Secciones de apuntes */
 
-  }
-  
+.main {
+  padding: 0 60px;
+  padding-bottom: 40px;
+}
+
+
+.section-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.section-columns > div {
+  flex: 1 1 300px;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.note-card {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 0.9rem;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Materias más buscadas */
+.subject-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.subject {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subject button {
+  background-color: #0c5c2d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.subject button:hover {
+  background-color: #117d3e;
+}
+
+.folder-icon {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
   /* Footer */
   footer {
     background-color: #222;
@@ -189,3 +245,31 @@ body {
   }
 
   
+
+  .notes-sections-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 2rem 0;
+}
+
+.notes-column {
+  flex: 1 1 45%;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.note-card {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
