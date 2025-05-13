@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Página</title>
 
+    <link rel="icon" type="image/png" href=/img/logoblanco.png />
+
+
     <link rel="stylesheet" href="/css/profile.css" />
   </head>
   <body>
@@ -39,39 +42,44 @@
             <label for="email">Correo electrónico</label>
             <input type="email" id="email" placeholder="Correo electrónico" />
           </div>
-          <button type="button" class="edit-btn">Editar</button>
         </form>
       </div>
     </div>
 
-    <div class="main">
-      <div class="column">
-        <h3>Apuntes subidos</h3>
-        <div class="image-grid">
-          <img src="/img/libros.png" alt="Apunte 1" />
-          <img src="/img/libros.png" alt="Apunte 2" />
-          <img src="/img/libros.png" alt="Apunte 3" />
-          <img src="/img/libros.png" alt="Apunte 4" />
-        </div>
-      </div>
-
-      <div class="column">
-        <h3>Apuntes guardados</h3>
-        <div class="image-grid">
-          <img src="/img/librodescargar.png" alt="Apunte 1" />
-          <img src="/img/librodescargar.png" alt="Apunte 2" />
-          <img src="/img/librodescargar.png" alt="Apunte 3" />
-        </div>
-      </div>
-
-      <div class="column">
-        <h3>Estadísticas de mi actividad</h3>
-        <p>Total de apuntes subidos:</p>
-        <p>Total de descargas de mis apuntes:</p>
-        <p>Total de likes recibidos:</p>
-        <p>Apuntes mas populares:</p>
+<div class="main">
+  <div class="notes-sections-row">
+    <!-- Apuntes subidos -->
+    <div class="notes-column">
+      <h2>Apuntes subidos</h2>
+      <div class="notes-grid">
+        <div class="note-card">📚<br />[Título] 🔥 (50)</div>
+        <div class="note-card">📚<br />[Título] 🔥 (50)</div>
+        <div class="note-card">📚<br />[Título] 🔥 (50)</div>
+        <div class="note-card">📚<br />[Título] 🔥 (50)</div>
       </div>
     </div>
+
+    <!-- Apuntes guardados -->
+    <div class="notes-column">
+      <h2>Apuntes guardados</h2>
+      <div class="notes-grid">
+        <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
+        <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
+        <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
+        <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <h3>Estadísticas de mi actividad</h3>
+    <p>Total de apuntes subidos:</p>
+    <p>Total de descargas de mis apuntes:</p>
+    <p>Total de likes recibidos:</p>
+    <p>Apuntes más populares:</p>
+  </div>
+</div>
+
 
     <footer class="footer-settings">
       <h3>Configuración de Cuenta</h3>
