@@ -3,13 +3,6 @@ import bcrypt from 'bcrypt'
 import { createAccessToken } from '../jwt.js'
 
 const login = async (req, res) => {
-  // verificar que no haya sesion iniciada
-  // if (req.cookies.token) {
-  //   return res
-  //     .status(400)
-  //     .json({ message: 'Active session. Please close it before strating another' })
-  // }
-
   const { email, password } = req.body
 
   try {
@@ -78,9 +71,7 @@ const register = async (req, res) => {
 const logout = async (req, res) => {
   res.clearCookie('token')
 
-  res.status(200).json({ message: 'Session closed successful' }) // luego elimino esto
-
-  // return res.redirect('/src/HTML/login.html')
+  res.status(200).json({ message: 'Session closed successful' })
 }
 
 export { login, register, logout }
