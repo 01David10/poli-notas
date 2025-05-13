@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const loginButton = document.getElementById('loginButton')
 
 loginButton.addEventListener('click', () => {
@@ -8,8 +9,6 @@ async function login () {
   try {
     const email = document.getElementById('floatingInput').value
     const password = document.getElementById('floatingPassword').value
-    console.log('Email:', email)
-    console.log('Password:', password)
 
     const response = await fetch('http://localhost:3000/session/login', {
       method: 'POST',
@@ -23,13 +22,17 @@ async function login () {
     const data = await response.json()
 
     if (response.ok) {
-      alert('¡Welcome, ' + data.name + '!') // cambiar por alerta de sweetalert
-      window.location.href = '/index'
+      Swal.fire('Welcome', data.name, 'success').then(() => {
+        window.location.href = '/index'
+      })
     } else {
-      alert('Unsuccessful login') // cambiar por alerta de sweetalert
+      Swal.fire(
+        'Login failed',
+        'Please verify your email and password',
+        'error'
+      )
     }
   } catch (error) {
-    console.error('Connectio failed:', error)
-    alert('Connection failed') // cambiar por alerta de sweetalert
+    Swal.fire('Connection failed', error, 'error')
   }
 }
