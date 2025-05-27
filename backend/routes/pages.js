@@ -6,6 +6,6 @@ const router = Router()
 
 router.get('/login', getLoginPage)
 router.get('/index', authRequired, getIndexPage)
-router.get('/profile', getProfilePage)
+router.get('/profile', authRequired, getProfilePage)
 
 export default router
