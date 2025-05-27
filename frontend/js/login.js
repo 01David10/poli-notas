@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const loginButton = document.getElementById('loginButton')
+const loginButton = document.getElementById('login-button')
 
 loginButton.addEventListener('click', () => {
   login()
@@ -7,8 +7,8 @@ loginButton.addEventListener('click', () => {
 
 async function login () {
   try {
-    const email = document.getElementById('floatingInput').value
-    const password = document.getElementById('floatingPassword').value
+    const email = document.getElementById('floating-email').value
+    const password = document.getElementById('floating-password').value
 
     const response = await fetch('http://localhost:3000/session/login', {
       method: 'POST',
