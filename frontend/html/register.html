@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Poli Notas | Login</title>
+    <title>Poli Notas | Register</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -10,7 +10,7 @@
     />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="/img/logoblanco.png" type="image/png">
+    <link rel="shortcut icon" href="/img/logoblanco.png" type="image/png" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link
@@ -29,17 +29,57 @@
         novalidate
       >
         <img src="/img/logoblanco.png" alt="logo" />
-        <h3>Please Sign in</h3>
+        <h3>Register</h3>
+
+        <div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="floating-name"
+              placeholder="name"
+            />
+            <label for="floating-name">Name</label>
+          </div>
+          <div class="invalid-feedback">Please enter a valid name</div>
+        </div>
+
+        <div>
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="floating-document"
+              placeholder="document"
+            />
+            <label for="floating-document">Document</label>
+          </div>
+          <div class="invalid-feedback">Please enter a valid document</div>
+        </div>
+
+        <!-- select con role -->
+        <div>
+          <div class="form-floating">
+            <select class="form-select" id="floating-role" aria-label="Role">
+              <option selected disabled>Choose a role</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+            </select>
+            <label for="floating-role">Role</label>
+          </div>
+          <div class="invalid-feedback">Please select a role</div>
+        </div>
 
         <div>
           <div class="form-floating">
             <input
               type="email"
               class="form-control"
-              id="floatingInput"
+              id="floating-email"
               placeholder="Email"
             />
-            <label for="floatingInput">Email address</label>
+            <label for="floating-email">Email address</label>
           </div>
           <div class="invalid-feedback">Please enter a valid email</div>
         </div>
@@ -49,22 +89,24 @@
             <input
               type="password"
               class="form-control"
-              id="floatingPassword"
+              id="floating-password"
               placeholder="Password"
             />
-            <label for="floatingPassword">Password</label>
+            <label for="floating-password">Password</label>
           </div>
         </div>
 
         <div class="mt-4">
           <button class="btn btn-success w-100" type="reset" id="loginButton">
-            Sign in
+            Register
           </button>
         </div>
+
         <div class="mt-3">
           <p class="text-center">
-            Don't have an account? <a href="/register">Register</a>
+            Already have an account? <a href="/login">Login</a>
           </p>
+        </div>
       </form>
       <!-- form -->
     </main>
