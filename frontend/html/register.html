@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Poli Notas | Login</title>
+    <title>Poli Notas | Register</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -9,7 +9,8 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <link rel="icon" type="image/png" href=/img/logoblanco.png />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/img/logoblanco.png" type="image/png" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link
@@ -24,13 +25,56 @@
     <main>
       <div class="container text-center">
         <img src="/img/logoblanco.png" alt="logo" />
-        <h3>Sign in</h3>
+        <h3>Register</h3>
       </div>
+
       <!-- form -->
       <form
         class="container mt-5 row col-12 col-sm-8 col-md-6 col-lg-4 mx-auto g-3 needs-validation"
         novalidate
       >
+        <div class="form-text">* Required Field</div>
+
+        <div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="floating-name"
+              placeholder="name"
+            />
+            <label for="floating-name">Name</label>
+          </div>
+          <div class="invalid-feedback">Please enter a valid name</div>
+        </div>
+
+        <div>
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="floating-document"
+              placeholder="document"
+            />
+            <label for="floating-document">Document</label>
+          </div>
+          <div class="invalid-feedback">Please enter a valid document</div>
+        </div>
+
+        <!-- select con role -->
+        <div>
+          <div class="form-floating">
+            <select class="form-select" id="floating-role" aria-label="Role">
+              <option selected disabled>Choose a role</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+            </select>
+            <label for="floating-role">Role</label>
+          </div>
+          <div class="invalid-feedback">Please select a role</div>
+        </div>
+
         <div>
           <div class="form-floating">
             <input
@@ -57,15 +101,19 @@
         </div>
 
         <div class="mt-4">
-          <button class="btn btn-success w-100" type="reset" id="login-button">
-            Sign in
+          <button
+            class="btn btn-success w-100"
+            type="reset"
+            id="register-button"
+          >
+            Register
           </button>
         </div>
       </form>
       <!-- form -->
       <div class="mt-3">
         <p class="text-center">
-          Don't have an account? <a href="/register">Register</a>
+          Already have an account? <a href="/login">Login</a>
         </p>
       </div>
     </main>
@@ -84,6 +132,6 @@
 
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/login.js"></script>
+    <script src="/js/register.js"></script>
   </body>
 </html>
