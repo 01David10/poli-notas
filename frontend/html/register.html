@@ -32,6 +32,7 @@
       <form
         class="container mt-5 row col-12 col-sm-8 col-md-6 col-lg-4 mx-auto g-3 needs-validation"
         novalidate
+        id="register-form"
       >
         <div class="form-text">* Required Field</div>
 
@@ -42,47 +43,51 @@
               class="form-control"
               id="floating-name"
               placeholder="name"
+              required
               minlength="2"
               maxlength="50"
               pattern="^[A-Za-z\s]+$"
             />
             <label for="floating-name">Name*</label>
-          </div>
-          <div class="invalid-feedback">
-            Please enter a valid name (2-50 characters)
+            <div class="invalid-feedback">
+              Please enter a valid name (2-50 characters)
+            </div>
           </div>
         </div>
 
         <div>
           <div class="form-floating">
             <input
-              type="number"
+              type="text"
               class="form-control"
               id="floating-document"
               placeholder="document"
-              minlength="8"
-              maxlength="10"
-              pattern="^[0-9]+$"
+              required
+              pattern="^[0-9]{8,10}$"
             />
             <label for="floating-document">Document*</label>
-          </div>
-          <div class="invalid-feedback">
-            Please enter a valid document ID (8-10 digits)
+            <div class="invalid-feedback">
+              Please enter a valid document ID (8-10 digits)
+            </div>
           </div>
         </div>
 
-        <!-- select con role -->
         <div>
           <div class="form-floating">
-            <select class="form-select" id="floating-role" aria-label="Role">
-              <option selected disabled>Choose a role</option>
+            <select
+              class="form-select"
+              id="floating-role"
+              aria-label="Role"
+              required
+            >
+              <option selected disabled value="">Choose a role</option>
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
               <option value="admin">Admin</option>
             </select>
             <label for="floating-role">Role*</label>
+            <div class="invalid-feedback">Please select a role</div>
           </div>
-          <div class="invalid-feedback">Please select a role</div>
         </div>
 
         <div>
@@ -92,11 +97,12 @@
               class="form-control"
               id="floating-email"
               placeholder="Email"
+              required
               pattern="^[A-Za-z0-9._\+\-]+@[A-Za-z0-9._\+\-]+\.[A-Za-z]{2,}$"
             />
             <label for="floating-email">Email address*</label>
+            <div class="invalid-feedback">Please enter a valid email</div>
           </div>
-          <div class="invalid-feedback">Please enter a valid email</div>
         </div>
 
         <div>
@@ -106,22 +112,22 @@
               class="form-control"
               id="floating-password"
               placeholder="Password"
+              required
               pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%&\+._\-])(?=.*[0-9])[A-Za-z\d!@#$%&\+._\-]{8,20}$"
             />
-            />
             <label for="floating-password">Password*</label>
-          </div>
-          <div class="invalid-feedback">
-            Password must be 8 to 20 characters long and must have at least one
-            uppercase letter, one lowercase letter, one number and one special
-            character
+            <div class="invalid-feedback">
+              Password must be 8 to 20 characters long and must have at least
+              one uppercase letter, one lowercase letter, one number and one
+              special character
+            </div>
           </div>
         </div>
 
         <div class="mt-4">
           <button
             class="btn btn-success w-100"
-            type="reset"
+            type="button"
             id="register-button"
           >
             Register
