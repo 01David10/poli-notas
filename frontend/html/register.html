@@ -42,10 +42,15 @@
               class="form-control"
               id="floating-name"
               placeholder="name"
+              minlength="2"
+              maxlength="50"
+              pattern="^[A-Za-z\s]+$"
             />
-            <label for="floating-name">Name</label>
+            <label for="floating-name">Name*</label>
           </div>
-          <div class="invalid-feedback">Please enter a valid name</div>
+          <div class="invalid-feedback">
+            Please enter a valid name (2-50 characters)
+          </div>
         </div>
 
         <div>
@@ -55,10 +60,15 @@
               class="form-control"
               id="floating-document"
               placeholder="document"
+              minlength="8"
+              maxlength="10"
+              pattern="^[0-9]+$"
             />
-            <label for="floating-document">Document</label>
+            <label for="floating-document">Document*</label>
           </div>
-          <div class="invalid-feedback">Please enter a valid document</div>
+          <div class="invalid-feedback">
+            Please enter a valid document ID (8-10 digits)
+          </div>
         </div>
 
         <!-- select con role -->
@@ -70,7 +80,7 @@
               <option value="teacher">Teacher</option>
               <option value="admin">Admin</option>
             </select>
-            <label for="floating-role">Role</label>
+            <label for="floating-role">Role*</label>
           </div>
           <div class="invalid-feedback">Please select a role</div>
         </div>
@@ -82,8 +92,9 @@
               class="form-control"
               id="floating-email"
               placeholder="Email"
+              pattern="^[A-Za-z0-9._\+\-]+@[A-Za-z0-9._\+\-]+\.[A-Za-z]{2,}$"
             />
-            <label for="floating-email">Email address</label>
+            <label for="floating-email">Email address*</label>
           </div>
           <div class="invalid-feedback">Please enter a valid email</div>
         </div>
@@ -95,8 +106,15 @@
               class="form-control"
               id="floating-password"
               placeholder="Password"
+              pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%&\+._\-])(?=.*[0-9])[A-Za-z\d!@#$%&\+._\-]{8,20}$"
             />
-            <label for="floating-password">Password</label>
+            />
+            <label for="floating-password">Password*</label>
+          </div>
+          <div class="invalid-feedback">
+            Password must be 8 to 20 characters long and must have at least one
+            uppercase letter, one lowercase letter, one number and one special
+            character
           </div>
         </div>
 
