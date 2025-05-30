@@ -1,10 +1,11 @@
 import { Router } from 'express'
-import { login, register, logout } from '../controllers/session.js'
+import { login, register, logout, getLoggedUser } from '../controllers/session.js'
 
 const router = Router()
 
 router.post('/login', login)
 router.post('/register', register)
 router.post('/logout', logout)
+router.get('/loggedUser', getLoggedUser)
 
 export default router

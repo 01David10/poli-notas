@@ -1,5 +1,6 @@
 import User from '../schema.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { createAccessToken } from '../jwt.js'
 
 const login = async (req, res) => {
@@ -74,4 +75,18 @@ const logout = async (req, res) => {
   res.status(200).json({ message: 'Session closed successful' })
 }
 
-export { login, register, logout }
+const getLoggedUser = async (req, res) => {
+  const token = req.cookies.token
+  if (!token) return res.status(401).json({ error: 'No token found' })
+
+  const tokenSecret = process.env.TOKEN_SECRET
+
+  try {
+    const user = jwt.verify(token, tokenSecret)
+    res.json({ user })
+  } catch (err) {
+    res.status(401).json({ error: 'Invalid token' })
+  }
+}
+
+export { login, register, logout, getLoggedUser }
