@@ -3,8 +3,9 @@ const btnRegister = document.getElementById('register-button')
 
 btnRegister.addEventListener('click', async (e) => {
   const isValidate = await validateForm()
+  const isCheckbox = await validateCheckbox()
 
-  if (isValidate) {
+  if (isValidate && isCheckbox) {
     register()
   }
 })
@@ -16,6 +17,21 @@ async function validateForm () {
     return true
   } else {
     form.classList.add('was-validated')
+    return false
+  }
+}
+
+async function validateCheckbox () {
+  const isChecked = document.getElementById('conditions-input')
+
+  if (isChecked.checked) {
+    return true
+  } else {
+    Swal.fire(
+      'Terms and Conditions',
+      'You must accept the terms and conditions to register.',
+      'warning'
+    )
     return false
   }
 }
@@ -44,7 +60,11 @@ async function register () {
 
     if (response.ok) {
       const data = await response.json()
-      Swal.fire('Registration successful', `Welcome ${data.name}`, 'success').then(() => {
+      Swal.fire(
+        'Registration successful',
+        `Welcome ${data.name}`,
+        'success'
+      ).then(() => {
         window.location.href = '/login'
       })
     } else {
