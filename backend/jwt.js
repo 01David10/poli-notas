@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 const tokenSecret = process.env.TOKEN_SECRET
 
-function createAccessToken(payload) {
+function createAccessToken (payload) {
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
