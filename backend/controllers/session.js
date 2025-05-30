@@ -52,7 +52,7 @@ const register = async (req, res) => {
     const userSaved = await newUser.save()
 
     // creacion del Token
-    const token = await createAccessToken({ id: userSaved.id })
+    const token = await createAccessToken({ userSaved })
     // guardar el token en la cookie
     res.cookie('token', token, {
       httpOnly: true
