@@ -10,4 +10,16 @@ const userSchema = {
 
 const UserModel = mongoose.model('users', userSchema)
 
-export default UserModel
+const noteSchema = {
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true },
+  title: { type: String, required: true },
+  URL: { type: String, required: true },
+  rating: { type: [{ type: Number, min: 1, max: 5 }], default: [] },
+  category: { type: [String], default: [] },
+  downloads: { type: Number, default: 0 },
+  date: { type: Date, default: Date.now }
+}
+
+const NoteModel = mongoose.model('notes', noteSchema)
+
+export { UserModel, NoteModel }

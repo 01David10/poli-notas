@@ -1,4 +1,4 @@
-import User from '../schema.js'
+import { UserModel } from '../schema.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { createAccessToken } from '../jwt.js'
@@ -8,7 +8,7 @@ const login = async (req, res) => {
 
   try {
     //  validar correo
-    const userFound = await User.findOne({ email })
+    const userFound = await UserModel.findOne({ email })
     if (!userFound) {
       return res.status(400).json({ message: 'Email not found' })
     }
@@ -40,7 +40,7 @@ const register = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10)
 
     // crear Usuario
-    const newUser = new User({
+    const newUser = new UserModel({
       name,
       dni,
       email,
