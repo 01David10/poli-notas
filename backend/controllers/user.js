@@ -1,4 +1,4 @@
-import UserModel from '../schema.js'
+import { UserModel } from '../schema.js'
 import bcrypt from 'bcrypt'
 
 const getAllUsers = async (req, res) => {
