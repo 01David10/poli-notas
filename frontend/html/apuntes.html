@@ -12,8 +12,8 @@
   <!-- HEADER -->
   <header>
     <div class="logo">
-      <!-- más tarde reemplaza el texto por: <img src="img/logo.png" alt="Polinotas"> -->
-      Logo
+      <a href="index.html">
+      <img src="img/logoblanco.png" alt="Polinotas" />
     </div>
     <nav>
       <a href="/frontend/html/inicio.html">Inicio</a>
@@ -22,9 +22,9 @@
     
     </nav>
     <div class="search-btn">
-      <input type="text" placeholder="Buscar apuntes..." />
-      <button><i class="fas fa-search"></i></button>
-    </div>
+    <input type="text" id="buscador" placeholder="Buscar apuntes..." />
+    <button><i class="fas fa-search"></i></button>
+  </div>
   </header>
 
   <!-- BANNER -->
@@ -102,26 +102,24 @@
 
   
   <script>
-    // Capturamos elementos
-    const input = document.getElementById('search-input');
-    const cards = document.querySelectorAll('.materia-card');
-  
-    input.addEventListener('input', () => {
-      const filtro = input.value.toLowerCase().trim();
-  
-      cards.forEach(card => {
-        const titulo = card.querySelector('.materia-titulo')
-                            .textContent
-                            .toLowerCase();
-        // Si coincide, mostramos la tarjeta; si no, la ocultamos
-        if (titulo.includes(filtro)) {
-          card.style.display = 'block'; 
-        } else {
-          card.style.display = 'none';
-        }
-      });
+  // Seleccionar el input y los elementos a filtrar
+  const buscador = document.getElementById('buscador');
+  const tarjetas = document.querySelectorAll('.materia-card');
+
+  buscador.addEventListener('input', function () {
+    const texto = buscador.value.toLowerCase();
+
+    tarjetas.forEach(card => {
+      const materia = card.textContent.toLowerCase();
+      if (materia.includes(texto)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
     });
-  </script>
+  });
+</script>
+
    <script src="/frontend/js/main.js"></script>
 </body>
 </html>

@@ -38,3 +38,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// Filtro de apuntes por nombre o autor
+document.addEventListener("DOMContentLoaded", () => {
+  const buscador = document.getElementById("buscador");
+  const cards = document.querySelectorAll(".apunte-card");
+
+  buscador.addEventListener("keyup", function () {
+    const filtro = buscador.value.toLowerCase();
+
+    cards.forEach((card) => {
+      const titulo = card.querySelector("h3").textContent.toLowerCase();
+      const autor = card.querySelector(".autor").textContent.toLowerCase();
+
+      if (titulo.includes(filtro) || autor.includes(filtro)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+});
