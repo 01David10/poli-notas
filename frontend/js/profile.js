@@ -41,17 +41,16 @@ async function getLoggedUser() {
   }
 }
 
-const form = document.getElementById('uploadForm')
+// upload file
+const btnUpload = document.getElementById('btn-upload')
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault()
-
-  const fileInput = document.getElementById('fileInput')
-  const formData = new FormData()
-  formData.append('file', fileInput.files[0]) // clave "file"
+btnUpload.addEventListener('click', async (e) => {
+  const fileInput = document.getElementById('input-file')
+  const formData = new FormData() // create FormData object
+  formData.append('file', fileInput.files[0]) // key file
 
   try {
-    const response = await fetch('http://localhost:3000/api/upload', {
+    const response = await fetch('http://localhost:3000/upload/upload', {
       method: 'POST',
       body: formData
     })
@@ -60,12 +59,20 @@ form.addEventListener('submit', async (e) => {
     console.log(result)
 
     if (response.ok) {
-      alert('Archivo subido con éxito:\n' + result.url)
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'File uploaded successfully! URL:' + result.url,
+        confirmButtonText: 'OK'
+      })
     } else {
-      alert('Error al subir archivo.')
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: result.error || 'There was an error uploading the file.'
+      })
     }
   } catch (error) {
-    console.error('Error:', error)
-    alert('Fallo al subir el archivo.')
+    console.error('Error uploading file:', error)
   }
 })
