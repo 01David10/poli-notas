@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 })
 
-async function updateProfile(profile) {
+async function updateProfile (profile) {
   const name = document.getElementById('name')
   const email = document.getElementById('email')
   try {
@@ -20,7 +20,7 @@ async function updateProfile(profile) {
   }
 }
 
-async function getLoggedUser() {
+async function getLoggedUser () {
   try {
     const response = await fetch('http://localhost:3000/session/loggedUser', {
       method: 'GET',
