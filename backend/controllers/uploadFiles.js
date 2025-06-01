@@ -1,12 +1,14 @@
 import dotenv from 'dotenv'
 import { BlobServiceClient } from '@azure/storage-blob'
+import { NoteModel } from '../schema.js'
+import jwt from 'jsonwebtoken'
 
 dotenv.config()
 
 const uploadFile = async (req, res) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ error: 'No se envió ningún archivo.' })
+      return res.status(400).json({ error: 'There are no files upload' })
     }
 
     const blobServiceClient = BlobServiceClient.fromConnectionString(
@@ -19,14 +21,40 @@ const uploadFile = async (req, res) => {
     const blockBlobClient = containerClient.getBlockBlobClient(blobName)
 
     await blockBlobClient.uploadData(req.file.buffer)
+    const fileUrl = blockBlobClient.url
+
+    const token = req.cookies.token
+    if (!token) return res.status(401).json({ error: 'No token found' })
+
+    const tokenSecret = process.env.TOKEN_SECRET
+    let user
+    try {
+      user = jwt.verify(token, tokenSecret)
+    } catch (err) {
+      return res.status(401).json({ error: 'Invalid token' })
+    }
+
+    if (!user || !user.userFound._id) {
+      return res.status(400).json({ error: 'Invalid user data in token' })
+    }
+
+    const newNote = new NoteModel({
+      userId: user.userFound._id,
+      title: req.body.title,
+      URL: fileUrl,
+      category: req.body.category,
+      subject: req.body.subject
+    })
+
+    await newNote.save()
 
     res.status(200).json({
-      message: 'Archivo subido correctamente',
-      url: blockBlobClient.url
+      message: 'File uploaded successfully',
+      url: fileUrl
     })
   } catch (error) {
-    console.error('Error al subir el archivo:', error.message)
-    res.status(500).json({ error: 'No se pudo subir el archivo.' })
+    console.error('There was an error uploading the file:', error.message)
+    res.status(500).json({ error: 'The file did not upload' })
   }
 }
 

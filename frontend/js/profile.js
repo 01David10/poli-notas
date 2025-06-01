@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 })
 
-async function updateProfile(profile) {
+async function updateProfile (profile) {
   const name = document.getElementById('name')
   const email = document.getElementById('email')
   try {
@@ -20,7 +20,7 @@ async function updateProfile(profile) {
   }
 }
 
-async function getLoggedUser() {
+async function getLoggedUser () {
   try {
     const response = await fetch('http://localhost:3000/session/loggedUser', {
       method: 'GET',
@@ -46,8 +46,16 @@ const btnUpload = document.getElementById('btn-upload')
 
 btnUpload.addEventListener('click', async (e) => {
   const fileInput = document.getElementById('input-file')
-  const formData = new FormData() // create FormData object
-  formData.append('file', fileInput.files[0]) // key file
+  const fileName = document.getElementById('file-name')
+  const fileCategory = document.getElementById('floating-category')
+  const fileSubject = document.getElementById('floating-subject')
+
+  const formData = new FormData()
+
+  formData.append('file', fileInput.files[0])
+  formData.append('fileName', fileName.value)
+  formData.append('fileCategory', fileCategory.value)
+  formData.append('fileSubject', fileSubject.value)
 
   try {
     const response = await fetch('http://localhost:3000/upload/upload', {
