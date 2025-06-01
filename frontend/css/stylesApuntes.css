@@ -669,3 +669,138 @@ footer {
 /* --------------------
    FIN DE STYLES PARA  MODERAR
 -------------------- */
+
+/* --------------------
+   STYLES PARA  ELIMINAR USUARIO
+-------------------- */
+
+:root {
+  --verde-principal: #14532d;
+  --verde-oscuro: #14532d;
+  --fondo-claro: #f9f9f9;
+  --gris: #666;
+  --bordes: #ccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: var(--fondo-claro);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== HEADER ========== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #14532d; /* Verde oscuro */
+  padding: 15px 30px;
+}
+
+.logo {
+  height: 50px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #d1fae5;
+}
+
+/* ========== MAIN PAGE TITLE ========== */
+.page-title {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  border-bottom: 1px solid var(--bordes);
+}
+
+/* ========== TABLA DE USUARIOS ========== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border: 1px solid var(--bordes);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid var(--bordes);
+}
+
+th {
+  background-color: var(--verde-principal);
+  color: white;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+input[type="radio"] {
+  transform: scale(1.2);
+}
+
+/* ========== BOTÓN BORRAR ========== */
+#borrarUsuarioBtn {
+  background-color: #14532d;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+#borrarUsuarioBtn:hover {
+  background-color: #14532d;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background-color: #14532d;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.materia-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+.materia-card {
+  cursor: pointer;
+}
+
+
+
+/* --------------------
+   FIN DE STYLES PARA ELIMINAR USUARIO
+-------------------- */
