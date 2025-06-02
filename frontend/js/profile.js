@@ -46,13 +46,22 @@ const btnUpload = document.getElementById('btn-upload')
 
 btnUpload.addEventListener('click', async (e) => {
   const fileInput = document.getElementById('input-file')
-  const formData = new FormData() // create FormData object
-  formData.append('file', fileInput.files[0]) // key file
+  const fileName = document.getElementById('file-name')
+  const fileCategory = document.getElementById('floating-category')
+  const fileSubject = document.getElementById('floating-subject')
+
+  const formData = new FormData()
+
+  formData.append('file', fileInput.files[0])
+  formData.append('title', fileName.value)
+  formData.append('category', fileCategory.value)
+  formData.append('subject', fileSubject.value)
 
   try {
-    const response = await fetch('http://localhost:3000/upload/upload', {
+    const response = await fetch('http://localhost:3000/notes/upload', {
       method: 'POST',
-      body: formData
+      body: formData,
+      credentials: 'include'
     })
 
     const result = await response.json()
@@ -74,5 +83,52 @@ btnUpload.addEventListener('click', async (e) => {
     }
   } catch (error) {
     console.error('Error uploading file:', error)
+  }
+})
+
+// show user notes
+document.addEventListener('DOMContentLoaded', async () => {
+  const notesGrid = document.querySelector('.notes-column .notes-grid')
+
+  try {
+    const response = await fetch('http://localhost:3000/notes/userNotes', {
+      method: 'GET',
+      credentials: 'include'
+    })
+
+    const notes = await response.json()
+
+    if (!Array.isArray(notes)) {
+      throw new Error('Invalid response format')
+    }
+
+    notesGrid.innerHTML = ''
+
+    notes.forEach(note => {
+      const card = document.createElement('div')
+      card.classList.add('note-card')
+
+      const avgRating =
+        note.rating.length > 0
+          ? (
+              note.rating.reduce((acc, val) => acc + val, 0) / note.rating.length
+            ).toFixed(1)
+          : 'N/A'
+
+      card.innerHTML = `
+        <img src="../img/librodescargar.png" class="note-icon" alt="icon" />
+        <strong>${note.title}</strong><br />
+        ⭐ ${avgRating} <br />
+        🔥 ${note.downloads || 0} downloads
+      `
+
+      card.onclick = () => {
+        window.open(note.URL, '_blank')
+      }
+
+      notesGrid.appendChild(card)
+    })
+  } catch (err) {
+    console.error('Error loading user notes:', err)
   }
 })
