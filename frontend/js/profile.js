@@ -58,7 +58,7 @@ btnUpload.addEventListener('click', async (e) => {
   formData.append('subject', fileSubject.value)
 
   try {
-    const response = await fetch('http://localhost:3000/upload/upload', {
+    const response = await fetch('http://localhost:3000/notes/upload', {
       method: 'POST',
       body: formData,
       credentials: 'include'

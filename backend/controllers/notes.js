@@ -58,4 +58,30 @@ const uploadFile = async (req, res) => {
   }
 }
 
-export { uploadFile }
+const getUserNotes = async (req, res) => {
+  try {
+    const token = req.cookies.token
+    if (!token) return res.status(401).json({ error: 'No token provided' })
+
+    const tokenSecret = process.env.TOKEN_SECRET
+    let user
+    try {
+      user = jwt.verify(token, tokenSecret)
+    } catch (err) {
+      return res.status(401).json({ error: 'Invalid token' })
+    }
+
+    if (!user || !user.userFound || !user.userFound._id) {
+      return res.status(400).json({ error: 'Invalid user data in token' })
+    }
+
+    const notes = await NoteModel.find({ userId: user.userFound._id })
+
+    res.status(200).json(notes)
+  } catch (error) {
+    console.error('Error fetching user notes:', error.message)
+    res.status(500).json({ error: 'Could not fetch user notes' })
+  }
+}
+
+export { uploadFile, getUserNotes }
