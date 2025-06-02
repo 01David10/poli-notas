@@ -85,3 +85,50 @@ btnUpload.addEventListener('click', async (e) => {
     console.error('Error uploading file:', error)
   }
 })
+
+// show user notes
+document.addEventListener('DOMContentLoaded', async () => {
+  const notesGrid = document.querySelector('.notes-column .notes-grid')
+
+  try {
+    const response = await fetch('http://localhost:3000/notes/userNotes', {
+      method: 'GET',
+      credentials: 'include'
+    })
+
+    const notes = await response.json()
+
+    if (!Array.isArray(notes)) {
+      throw new Error('Invalid response format')
+    }
+
+    notesGrid.innerHTML = ''
+
+    notes.forEach(note => {
+      const card = document.createElement('div')
+      card.classList.add('note-card')
+
+      const avgRating =
+        note.rating.length > 0
+          ? (
+              note.rating.reduce((acc, val) => acc + val, 0) / note.rating.length
+            ).toFixed(1)
+          : 'N/A'
+
+      card.innerHTML = `
+        <img src="../img/librodescargar.png" class="note-icon" alt="icon" />
+        <strong>${note.title}</strong><br />
+        ⭐ ${avgRating} <br />
+        🔥 ${note.downloads || 0} downloads
+      `
+
+      card.onclick = () => {
+        window.open(note.URL, '_blank')
+      }
+
+      notesGrid.appendChild(card)
+    })
+  } catch (err) {
+    console.error('Error loading user notes:', err)
+  }
+})
