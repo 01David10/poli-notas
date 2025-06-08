@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 })
 
-async function updateProfile (profile) {
+async function updateProfile(profile) {
   const name = document.getElementById('name')
   const email = document.getElementById('email')
   try {
@@ -20,7 +20,7 @@ async function updateProfile (profile) {
   }
 }
 
-async function getLoggedUser () {
+async function getLoggedUser() {
   try {
     const response = await fetch('http://localhost:3000/session/loggedUser', {
       method: 'GET',
@@ -104,14 +104,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     notesGrid.innerHTML = ''
 
-    notes.forEach(note => {
+    notes.forEach((note) => {
       const card = document.createElement('div')
       card.classList.add('note-card')
 
       const avgRating =
         note.rating.length > 0
           ? (
-              note.rating.reduce((acc, val) => acc + val, 0) / note.rating.length
+              note.rating.reduce((acc, val) => acc + val, 0) /
+              note.rating.length
             ).toFixed(1)
           : 'N/A'
 
@@ -132,3 +133,81 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Error loading user notes:', err)
   }
 })
+
+// update profile
+const btnUpdate = document.getElementById('btn-update')
+
+btnUpdate.addEventListener('click', async () => {
+  updateUser()
+})
+
+async function updateUser () {
+  const profile = await getLoggedUser()
+
+  const dni = profile.user.userFound.dni
+
+  // fetch the user profile
+  const name = document.getElementById('edit-name')
+  const email = document.getElementById('edit-email')
+  const role = document.getElementById('edit-role')
+  const dniInput = document.getElementById('edit-document')
+  try {
+    name.value = profile.user.userFound.name
+    email.value = profile.user.userFound.email
+    role.value = profile.user.userFound.role
+    dniInput.value = profile.user.userFound.dni
+  } catch (error) {
+    console.error('Error updating profile:', error)
+  }
+
+  // get update profile values
+  const newDni = document.getElementById('edit-document').value
+  const newEmail = document.getElementById('edit-email')
+  const newName = document.getElementById('edit-name')
+  const newPassword = document.getElementById('edit-password')
+  const newRole = document.getElementById('edit-role')
+
+  // new user
+  const user = {
+    name: newName.value,
+    dni: newDni,
+    email: newEmail.value,
+    password: newPassword.value,
+    role: newRole.value
+  }
+
+  const btnSaveChanges = document.getElementById('btn-save-changes')
+
+  btnSaveChanges.addEventListener('click', async () => {
+    // update the user profile
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users/updateUser/${dni}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ user }),
+          credentials: 'include'
+        }
+      )
+
+      if (response.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Profile updated successfully!',
+          confirmButtonText: 'OK'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error updating profile',
+          text: 'Please try again later.'
+        })
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error)
+    }
+  })
+}
