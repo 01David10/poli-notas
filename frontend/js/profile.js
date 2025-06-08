@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const profile = await getLoggedUser()
 
   if (profile) {
-    await updateProfile(profile)
+    await fetchProfile(profile)
   } else {
     Swal.fire('User not found', 'Please check the user ID', 'error')
   }
 })
 
-async function updateProfile(profile) {
+async function fetchProfile (profile) {
   const name = document.getElementById('name')
   const email = document.getElementById('email')
   try {
@@ -20,7 +20,8 @@ async function updateProfile(profile) {
   }
 }
 
-async function getLoggedUser() {
+// get logged user
+async function getLoggedUser () {
   try {
     const response = await fetch('http://localhost:3000/session/loggedUser', {
       method: 'GET',
@@ -45,6 +46,10 @@ async function getLoggedUser() {
 const btnUpload = document.getElementById('btn-upload')
 
 btnUpload.addEventListener('click', async (e) => {
+  await uploadFile()
+})
+
+async function uploadFile () {
   const fileInput = document.getElementById('input-file')
   const fileName = document.getElementById('file-name')
   const fileCategory = document.getElementById('floating-category')
@@ -84,10 +89,14 @@ btnUpload.addEventListener('click', async (e) => {
   } catch (error) {
     console.error('Error uploading file:', error)
   }
-})
+}
 
 // show user notes
 document.addEventListener('DOMContentLoaded', async () => {
+  await showUserNotes()
+})
+
+async function showUserNotes () {
   const notesGrid = document.querySelector('.notes-column .notes-grid')
 
   try {
@@ -132,19 +141,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (err) {
     console.error('Error loading user notes:', err)
   }
-})
+}
 
 // update profile
 const btnUpdate = document.getElementById('btn-update')
 
 btnUpdate.addEventListener('click', async () => {
-  updateUser()
+  await fetchUser()
+  await updateProfile()
 })
 
-async function updateUser () {
+async function fetchUser () {
   const profile = await getLoggedUser()
-
-  const dni = profile.user.userFound.dni
 
   // fetch the user profile
   const name = document.getElementById('edit-name')
@@ -159,7 +167,9 @@ async function updateUser () {
   } catch (error) {
     console.error('Error updating profile:', error)
   }
+}
 
+function getNewInputValues () {
   // get update profile values
   const newDni = document.getElementById('edit-document').value
   const newEmail = document.getElementById('edit-email')
@@ -175,12 +185,18 @@ async function updateUser () {
     password: newPassword.value,
     role: newRole.value
   }
+  return user
+}
+
+async function updateProfile () {
+  const profile = await getLoggedUser()
+  const dni = profile.user.userFound.dni
 
   const btnSaveChanges = document.getElementById('btn-save-changes')
 
   btnSaveChanges.addEventListener('click', async () => {
-    // update the user profile
     try {
+      const user = getNewInputValues()
       const response = await fetch(
         `http://localhost:3000/users/updateUser/${dni}`,
         {
