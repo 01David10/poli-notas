@@ -15,10 +15,10 @@ const noteSchema = {
   title: { type: String, required: true },
   URL: { type: String, required: true },
   rating: { type: [{ type: Number, min: 1, max: 5 }], default: [] },
-  category: { type: [String], required: true },
   subject: { type: String, required: true },
   downloads: { type: Number, default: 0 },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  isApproved: { type: Boolean, default: false }
 }
 
 const NoteModel = mongoose.model('notes', noteSchema)
