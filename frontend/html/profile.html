@@ -22,10 +22,6 @@
           <a href="/frontend/html/apuntes.html">Apuntes</a>
         </nav>
       </div>
-      <div class="header-left">
-        <input type="text" placeholder="Buscar..." id="input-buscar" />
-        <button class="search">Buscar</button>
-      </div>
       <div>
         <!-- logout -->
         <button class="btn btn-danger" id="logoutButton">Cerrar sesión</button>
@@ -90,9 +86,7 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="edit-email" class="form-label"
-                  >Email</label
-                >
+                <label for="edit-email" class="form-label">Email</label>
                 <input
                   type="email"
                   class="form-control"
@@ -143,7 +137,11 @@
                 <div class="invalid-feedback">Please select a role</div>
               </div>
               <!-- button -->
-              <button type="button" class="btn btn-primary" id="btn-save-changes">
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btn-save-changes"
+              >
                 Guardar cambios
               </button>
             </form>
@@ -206,23 +204,27 @@
           </div>
         </div>
 
-      <div class="column">
-        <h3>Estadísticas de mi actividad</h3>
-        <p>Total de apuntes subidos:</p>
-        <p>Total de descargas de mis apuntes:</p>
-        <p>Total de likes recibidos:</p>
-        <p>Apuntes más populares:</p>
+        <div class="column">
+          <h3>Estadísticas de mi actividad</h3>
+          <p>Total de apuntes subidos:</p>
+          <p>Total de descargas de mis apuntes:</p>
+          <p>Total de likes recibidos:</p>
+          <p>Apuntes más populares:</p>
+        </div>
       </div>
     </div>
-
-    <footer class="footer-settings">
-      <h3>Configuración de Cuenta</h3>
-      <ul>
-        <li><a href="#">Cambiar Contraseña</a></li>
-        <li><a href="#">Preferencias de Notificaciones</a></li>
-        <li><a href="#">Términos y Condiciones</a></li>
-        <li><a href="#">Eliminar Cuenta</a></li>
-      </ul>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>Polinotas</h3>
+          <p>&copy; 2025</p>
+        </div>
+        <div class="footer-right">
+          <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+        </div>
+      </div>
     </footer>
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

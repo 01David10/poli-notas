@@ -294,4 +294,9 @@ body {
   margin-bottom: 10px;
 }
 
-  
+footer {
+  background-color: #0d3b1c;
+  /* verde oscuro */
+  color: #ffffff;
+  padding: 20px 40px;
+}
