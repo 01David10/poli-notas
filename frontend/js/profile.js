@@ -207,9 +207,17 @@ async function updateProfile () {
     )
 
     if (response.ok) {
+      // close modal
       const modalElement = document.getElementById('editUserModal')
       const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement)
       modalInstance.hide()
+
+      const updatedName = document.getElementById('edit-name').value
+      const updatedEmail = document.getElementById('edit-email').value
+
+      // update profile inputs
+      document.getElementById('name').value = updatedName
+      document.getElementById('email').value = updatedEmail
 
       Swal.fire({
         icon: 'success',
