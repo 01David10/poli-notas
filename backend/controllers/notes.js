@@ -42,7 +42,6 @@ const uploadFile = async (req, res) => {
       userId: user.userFound._id,
       title: req.body.title,
       URL: fileUrl,
-      category: req.body.category,
       subject: req.body.subject
     })
 

@@ -52,14 +52,12 @@ btnUpload.addEventListener('click', async (e) => {
 async function uploadFile () {
   const fileInput = document.getElementById('input-file')
   const fileName = document.getElementById('file-name')
-  const fileCategory = document.getElementById('floating-category')
   const fileSubject = document.getElementById('floating-subject')
 
   const formData = new FormData()
 
   formData.append('file', fileInput.files[0])
   formData.append('title', fileName.value)
-  formData.append('category', fileCategory.value)
   formData.append('subject', fileSubject.value)
 
   try {
@@ -145,20 +143,20 @@ async function showUserNotes () {
 
 // update profile
 const btnUpdate = document.getElementById('btn-update')
+const btnSaveChanges = document.getElementById('btn-save-changes')
 
 btnUpdate.addEventListener('click', async () => {
   await fetchUser()
-  await updateProfile()
 })
 
 async function fetchUser () {
   const profile = await getLoggedUser()
 
-  // fetch the user profile
   const name = document.getElementById('edit-name')
   const email = document.getElementById('edit-email')
   const role = document.getElementById('edit-role')
   const dniInput = document.getElementById('edit-document')
+
   try {
     name.value = profile.user.userFound.name
     email.value = profile.user.userFound.email
@@ -169,15 +167,17 @@ async function fetchUser () {
   }
 }
 
+btnSaveChanges.addEventListener('click', async () => {
+  await updateProfile()
+})
+
 function getNewInputValues () {
-  // get update profile values
   const newDni = document.getElementById('edit-document').value
   const newEmail = document.getElementById('edit-email').value
   const newName = document.getElementById('edit-name').value
   const newPassword = document.getElementById('edit-password').value
   const newRole = document.getElementById('edit-role').value
 
-  // new user
   const user = {
     name: newName,
     dni: newDni,
@@ -192,38 +192,46 @@ async function updateProfile () {
   const profile = await getLoggedUser()
   const dni = profile.user.userFound.dni
 
-  const btnSaveChanges = document.getElementById('btn-save-changes')
-
-  btnSaveChanges.addEventListener('click', async () => {
-    try {
-      const user = getNewInputValues()
-      const response = await fetch(
-        `http://localhost:3000/users/updateUser/${dni}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ user }),
-          credentials: 'include'
-        }
-      )
-
-      if (response.ok) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Profile updated successfully!',
-          confirmButtonText: 'OK'
-        })
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error updating profile',
-          text: 'Please try again later.'
-        })
+  try {
+    const user = getNewInputValues()
+    const response = await fetch(
+      `http://localhost:3000/users/updateUser/${dni}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user),
+        credentials: 'include'
       }
-    } catch (error) {
-      console.error('Error updating profile:', error)
+    )
+
+    if (response.ok) {
+      // close modal
+      const modalElement = document.getElementById('editUserModal')
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement)
+      modalInstance.hide()
+
+      const updatedName = document.getElementById('edit-name').value
+      const updatedEmail = document.getElementById('edit-email').value
+
+      // update profile inputs
+      document.getElementById('name').value = updatedName
+      document.getElementById('email').value = updatedEmail
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Perfil actualizado con éxito',
+        confirmButtonText: 'OK'
+      })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al actualizar perfil',
+        text: 'Por favor, intenta de nuevo.'
+      })
     }
-  })
+  } catch (error) {
+    console.error('Error updating profile:', error)
+  }
 }
