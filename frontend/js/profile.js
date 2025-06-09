@@ -172,18 +172,18 @@ async function fetchUser () {
 function getNewInputValues () {
   // get update profile values
   const newDni = document.getElementById('edit-document').value
-  const newEmail = document.getElementById('edit-email')
-  const newName = document.getElementById('edit-name')
-  const newPassword = document.getElementById('edit-password')
-  const newRole = document.getElementById('edit-role')
+  const newEmail = document.getElementById('edit-email').value
+  const newName = document.getElementById('edit-name').value
+  const newPassword = document.getElementById('edit-password').value
+  const newRole = document.getElementById('edit-role').value
 
   // new user
   const user = {
-    name: newName.value,
+    name: newName,
     dni: newDni,
-    email: newEmail.value,
-    password: newPassword.value,
-    role: newRole.value
+    email: newEmail,
+    password: newPassword,
+    role: newRole
   }
   return user
 }
