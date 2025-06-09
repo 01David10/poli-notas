@@ -89,4 +89,25 @@ const getLoggedUser = async (req, res) => {
   }
 }
 
-export { login, register, logout, getLoggedUser }
+const resetPassword = async (req, res) => {
+  const { email, dni, newPassword } = req.body
+
+  try {
+    const user = await UserModel.findOne({ email, dni })
+
+    if (!user) {
+      return res.status(404).json({ message: 'Datos incorrectos, por favor validar correo y DNI' })
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10)
+    user.password = hashedPassword
+    await user.save()
+
+    return res.json({ message: 'Contraseña actualizada con éxito' })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: 'Error en el servidor' })
+  }
+}
+
+export { login, register, logout, getLoggedUser, resetPassword }

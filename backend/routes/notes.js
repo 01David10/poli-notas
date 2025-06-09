@@ -1,6 +1,6 @@
 import express from 'express'
 import multer from 'multer'
-import { uploadFile } from '../controllers/uploadFiles.js'
+import { uploadFile, getUserNotes } from '../controllers/notes.js'
 
 const router = express.Router()
 
@@ -8,7 +8,7 @@ const router = express.Router()
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
-// route to upload files
 router.post('/upload', upload.single('file'), uploadFile)
+router.get('/userNotes', getUserNotes)
 
 export default router

@@ -8,7 +8,7 @@ import DatabaseConnection from './db.js'
 import userRoutes from '../backend/routes/user.js'
 import sessionRoutes from './routes/session.js'
 import pagesRoutes from './routes/pages.js'
-import uploadRoutes from './routes/uploadFiles.js'
+import notesRoutes from './routes/notes.js'
 
 
 
@@ -28,7 +28,7 @@ DatabaseConnection()
 app.use('/', pagesRoutes)
 app.use('/users', userRoutes)
 app.use('/session', sessionRoutes)
-app.use('/upload', uploadRoutes)
+app.use('/notes', notesRoutes)
 
 // set port
 app.listen(3000, () => {
