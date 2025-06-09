@@ -85,10 +85,6 @@ nav a {
   border-radius: 10px;
 }
 
-main {
-  padding: 30px 20px;
-}
-
 .section-columns {
   display: flex;
   flex-wrap: wrap;
