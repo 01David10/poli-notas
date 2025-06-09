@@ -4,25 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
     <link rel="icon" type="image/png" href=/img/logoblanco.png />
-    
+
     <title>Polinotas</title>
-    <link rel="shortcut icon" href="/img/logoblanco.png" type="image/png">
+    <link rel="shortcut icon" href="/img/logoblanco.png" type="image/png" />
     <link rel="stylesheet" href="../css/index.css" />
   </head>
   <body>
     <header>
       <img src="../img/logoblanco.png" alt="Logo" class="logo" />
       <nav>
-        <a href="/frontend/html/index.html">Inicio</a>
-        <a href="/frontend/html/profile.html">Perfil</a>
+        <a href="/index">Inicio</a>
+        <a href="/profile">Perfil</a>
         <a href="/frontend/html/apuntes.html">Apuntes</a>
       </nav>
-      <div class="search-btn">
-      <input type="text" id="buscador" placeholder="Buscar apuntes..." />
-      <button><i class="fas fa-search"></i></button>
-    </div>
       <div>
         <!-- logout -->
         <button class="btn btn-danger" id="logoutButton">Cerrar sesión</button>
@@ -43,43 +38,8 @@
       </div>
     </section>
 
-    <main>
-      <div class="section-columns">
-        <div>
-          <h2>Apuntes Destacados</h2>
-          <div class="notes-grid">
-            <div class="note-card">📚<br />[Título] 🔥 (50)</div>
-            <div class="note-card">📚<br />[Título] 🔥 (50)</div>
-            <div class="note-card">📚<br />[Título] 🔥 (50)</div>
-            <div class="note-card">📚<br />[Título] 🔥 (50)</div>
-          </div>
-        </div>
-        <div>
-          <h2>Últimos Apuntes Subidos</h2>
-          <div class="notes-grid">
-            <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
-            <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
-            <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
-            <div class="note-card">📘<br />[Título] | Fecha | Autor</div>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="subtitle">Materias más buscadas</h2>
-      <div class="subject-buttons">
-        <div class="subject">
-          <button>Ecuaciones</button>
-          <div class="folder-icon">🗂️</div>
-        </div>
-        <div class="subject">
-          <button>Electricidad</button>
-          <div class="folder-icon">🗂️</div>
-        </div>
-        <div class="subject">
-          <button>Bases de datos 2</button>
-          <div class="folder-icon">🗂️</div>
-        </div>
-      </div>
+    <main class="wide-image">
+      <img src="../img/grados-colectivos-2025-2.webp" alt="">
     </main>
 
     <footer>
@@ -87,10 +47,6 @@
         <div class="footer-left">
           <h3>Polinotas</h3>
           <p>&copy; 2025</p>
-        </div>
-        <div class="footer-center">
-          <a href="#">Inicio</a>
-          <a href="#">Apuntes</a>
         </div>
         <div class="footer-right">
           <a href="#"><i class="fab fa-facebook fa-lg"></i></a>

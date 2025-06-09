@@ -85,10 +85,6 @@ nav a {
   border-radius: 10px;
 }
 
-main {
-  padding: 30px 20px;
-}
-
 .section-columns {
   display: flex;
   flex-wrap: wrap;
@@ -159,7 +155,6 @@ footer {
   /* verde oscuro */
   color: #ffffff;
   padding: 20px 40px;
-  margin-top: 50px;
 }
 
 .footer-container {
@@ -235,4 +230,10 @@ footer {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.wide-image img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
